@@ -1,93 +1,41 @@
-# PRD · <Nombre de tu producto>
-
-> Documento de requisitos del producto (Product Requirements Document).
-> Complétalo en el Sprint 0 (historia H0.3) y pide la aprobación del profesor en un Issue.
-> Cada requisito funcional (RF) se convierte en un Issue con la plantilla "Historia de usuario".
+# Documento de Requisitos del Producto (PRD)
 
 | Campo | Valor |
 | --- | --- |
-| Alumno | |
-| Proyecto n.º | |
-| Sitio de referencia | |
-| Compañero revisor | |
+| Alumno | Laura Camacho |
+| Proyecto n.º | Conversor Bs/USD con histórico |
+| Sitio de referencia | XE Currency Converter |
+| Compañero revisor | Pendiente |
 | URL desplegada | (se completa en el Sprint 5) |
 
 ## 1. Problema
 
-¿Qué problema real resuelve y a quién le duele? (3 a 5 líneas)
+Los usuarios en Venezuela necesitan consultar de manera rápida y precisa la tasa de cambio entre Bolívares (Bs) y Dólares (USD), así como revisar su comportamiento histórico por fecha o rango. Muchas opciones existentes son lentas, tienen exceso de publicidad o no resultan cómodas desde el teléfono móvil.
 
 ## 2. Usuarios
 
-- **Usuario principal:** quién es, qué necesita, desde qué dispositivo entra.
-- **Usuario secundario:**
+- **Usuario principal:** Personas, comerciantes y profesionales que necesitan convertir montos entre Bs y USD rápidamente en su día a día desde el móvil o la web.
+- **Usuario secundario:** Usuarios o estudiantes que desean consultar tasas históricas por fecha y observar su tendencia.
 
 ## 3. Objetivo y métrica de éxito
 
-Ejemplo: «Un bodeguero registra una venta en menos de 10 segundos».
+Un usuario consulta la tasa, convierte un monto entre Bs y USD y revisa el histórico en menos de 5 segundos desde su dispositivo, manteniendo `npm run check` en verde.
 
-## 4. Alcance del MVP
+## 4. Alcance del MVP y funcionalidades (`src/`)
 
-Entre 5 y 8 funcionalidades que SÍ entran este semestre.
+1. **Conversión interactiva Bs/USD y USD/Bs:** Cálculo bidireccional de montos y visualización de tasa en la interfaz web (`src/app/web/` y `src/app/`).
+2. **Consulta y ordenamiento de histórico por fecha:** Gestión de registros históricos y ordenamiento cronológico (`src/shared/algorithms/sort.ts` y `src/tasks/`).
+3. **Búsqueda rápida de tasa histórica por fecha:** Búsqueda eficiente de tasas en series históricas (`src/shared/algorithms/search.ts`).
+4. **Caché y estructuras de apoyo:** Almacenamiento en memoria y estructuras de datos para acceso rápido (`src/shared/structures/`).
+5. **Gráfica histórica en HTML5 Canvas:** Representación visual de la evolución de la tasa en la vista web (`src/app/web/index.html`, `src/app/web/main.ts`, `src/app/web/styles.css`).
+6. **API, configuración y registro de operaciones:** Endpoints, configuración y logs del servidor (`src/app/create-app.ts`, `src/app/server.ts`, `src/shared/config.ts`, `src/shared/logger.ts`, `src/shared/operation-log.ts`).
 
-1.
-2.
-3.
+## 5. Requisitos
 
-### Funcionalidades → carpetas de `src/` (screaming architecture)
-
-Cada funcionalidad del alcance será una carpeta en `src/`. Nómbralas en inglés y en plural.
-
-| Funcionalidad | Carpeta |
-| --- | --- |
-| Ejemplo: ventas | `src/sales` |
-| | |
-
-## 5. Fuera de alcance
-
-Lo que NO vas a construir.
-
--
-
-## 6. Requisitos funcionales
-
-| ID | Requisito | Prioridad (alta, media, baja) |
-| --- | --- | --- |
-| RF-01 | | |
-| RF-02 | | |
-
-## 7. Requisitos no funcionales
-
-- Responsive, móvil primero (375 px y 1280 px).
-- Lighthouse ≥ 90 en Accesibilidad y Buenas prácticas.
-- 0 errores en la consola del navegador.
-- Funciona con 10.000 registros sin congelarse.
-
-## 8. Modelo de datos
-
-Diagrama entidad-relación y tablas PostgreSQL con tipos, claves y restricciones.
-GitHub dibuja diagramas Mermaid; edita este ejemplo:
-
-```mermaid
-erDiagram
-  CLIENTE ||--o{ PEDIDO : hace
-  PEDIDO ||--|{ LINEA_PEDIDO : contiene
-  PRODUCTO ||--o{ LINEA_PEDIDO : aparece_en
-  CLIENTE {
-    int id PK
-    text nombre
-    text telefono
-  }
-  PEDIDO {
-    int id PK
-    int cliente_id FK
-    timestamptz creado_en
-  }
-```
-
-## 9. Reto técnico distintivo
-
-El que te tocó en el catálogo y cómo piensas resolverlo.
-
-## 10. Riesgos y preguntas abiertas
-
--
+- **Funcionales:**
+  - Convertir montos de Bs a USD y de USD a Bs.
+  - Consultar tasas históricas por fecha y visualizar su evolución.
+  - Mantener el flujo de tareas/registros base del proyecto (`src/tasks/`).
+- **No funcionales:**
+  - Interfaz responsive utilizable desde teléfono móvil.
+  - Código tipado en TypeScript que pase `npm run check` (`lint`, `typecheck` y `test`).
